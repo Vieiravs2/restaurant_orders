@@ -5,7 +5,6 @@ import pytest
 
 def test_dish():
     picanha = Dish("Picanha a Moda", 100.0)
-    cheese = Ingredient("queijo mussarela")
     invalidPrice = 'Dish price must be float.'
     lowerOrEqualZero = 'Dish price must be greater then zero.'
 
@@ -26,9 +25,12 @@ def test_dish():
 
     assert repr(picanha) == "Dish('Picanha a Moda', R$100.00)"
 
-    picanha.add_ingredient_dependency(cheese, 2)
+    picanha.add_ingredient_dependency(Ingredient("queijo mussarela"), 1)
+    picanha.add_ingredient_dependency(Ingredient("carne"), 1)
+    picanha.add_ingredient_dependency(Ingredient("queijo provolone"), 1)
+    picanha.add_ingredient_dependency(Ingredient("ovo"), 1)
 
-    assert len(picanha.recipe) == 1
-    assert len(picanha.get_ingredients()) == 1
-    assert len(picanha.get_restrictions()) == 2
+    assert len(picanha.recipe) == 4
+    assert len(picanha.get_ingredients()) == 4
+    assert len(picanha.get_restrictions()) == 3
 
