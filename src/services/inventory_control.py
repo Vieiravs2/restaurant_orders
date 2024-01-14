@@ -32,3 +32,6 @@ class InventoryMapping:
     # Req 5.2
     def consume_recipe(self, recipe: Recipe) -> None:
         pass
+
+    def has_all(self, ingredients):
+        return all(ingredient in self.inventory for ingredient in ingredients)
